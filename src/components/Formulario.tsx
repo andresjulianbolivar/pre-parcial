@@ -15,6 +15,7 @@ interface Autor {
     description: string;
     image: string;
     name: string;
+    id: number;
 }
 
 type Form = {
@@ -92,7 +93,8 @@ export default function Formulario({name="",birthDate="",description="",image=""
                         name: form.nombre,
                         birthDate: form.fechaDeNacimiento,
                         description: form.descripcion,
-                        image: form.imagen
+                        image: form.imagen,
+                        id: autor.id
                     };
                 }
                 return autor;
@@ -105,7 +107,8 @@ export default function Formulario({name="",birthDate="",description="",image=""
                 name: form.nombre,
                 birthDate: form.fechaDeNacimiento,
                 description: form.descripcion,
-                image: form.imagen
+                image: form.imagen,
+                id: autores.length > 0 ? Math.max(...autores.map(a => a.id)) + 1 : 1
             };
 
             const nuevosAutores = [...autores, nuevoAutor];

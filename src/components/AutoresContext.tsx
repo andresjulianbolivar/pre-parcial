@@ -6,6 +6,7 @@ interface Autor {
     description: string;
     image: string;
     name: string;
+    id: number;
 }
 
 const AutoresContext = createContext<{ autores: Autor[], actualizarAutores: (nuevos: Autor[]) => void } | null>(null);
@@ -22,7 +23,8 @@ export function AutoresProvider({ children }: { children: React.ReactNode }) {
             birthDate: user.birthDate,
             description: user.description,
             image: user.image,
-            name: user.name
+            name: user.name,
+            id: user.id
         })))
         .then(data => setAutores(data))
         .catch(error => console.error("Error fetching data:", error))
