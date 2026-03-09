@@ -70,7 +70,7 @@ export default function Lista(){
         }
         else{
             setListItems(
-                autores.filter(autor=> autor.name.toLowerCase().trim() === nombre.toLowerCase().trim()).map(autor =>
+                autores.filter(autor=> autor.name.toLowerCase().trim().includes(nombre.toLowerCase().trim())).map(autor =>
                     <tr className="bg-neutral-primary border-b border-default" key={autor.id}>
                         <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
                             {autor.name}
