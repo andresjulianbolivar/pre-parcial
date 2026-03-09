@@ -1,7 +1,10 @@
+import Lista from "@/components/Lista";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold">CRUD de autores App</h1>
+      <h1 className="text-4xl font-bold">Página Autores</h1>
+      <Lista />
     </main>
   );
 }
