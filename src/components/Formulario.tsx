@@ -158,6 +158,12 @@ export default function Formulario({name="",birthDate="",description="",image=""
                     aria-describedby={touched.fechaDeNacimiento && errors.fechaDeNacimiento ? "fechaDeNacimiento-error" : undefined}
                     className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary focus:ring-primary"
                 />
+                {touched.fechaDeNacimiento && errors.fechaDeNacimiento && (
+                    <p id="fechaDeNacimiento-error" className="mt-1 text-sm text-red-400">
+                        {errors.fechaDeNacimiento}
+                    </p>
+                )
+                }
             </div>
             <div className="space-y-2">
                 <label htmlFor="descripcion" className="block text-sm font-medium text-body">
@@ -175,6 +181,12 @@ export default function Formulario({name="",birthDate="",description="",image=""
                     aria-describedby={touched.descripcion && errors.descripcion ? "descripcion-error" : undefined}
                     className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary focus:ring-primary"
                 />
+                {touched.descripcion && errors.descripcion && (
+                    <p id="descripcion-error" className="mt-1 text-sm text-red-400">
+                        {errors.descripcion}
+                    </p>
+                )
+                }
             </div>
             <div className="space-y-2">
                 <label htmlFor="imagen" className="block text-sm font-medium text-body">
@@ -192,6 +204,12 @@ export default function Formulario({name="",birthDate="",description="",image=""
                     aria-describedby={touched.imagen && errors.imagen ? "imagen-error" : undefined}
                     className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary focus:ring-primary"
                 />
+                {touched.imagen && errors.imagen && (
+                    <p id="imagen-error" className="mt-1 text-sm text-red-400">
+                        {errors.imagen}
+                    </p>
+                )
+                }
             </div>
             <div className="pt-2">
                 <button
