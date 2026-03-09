@@ -47,4 +47,52 @@ describe("Render de /crear", () => {
         expect(screen.getByLabelText(/url de la imagen/i)).toBeInTheDocument();
         expect(saveBtn).toBeDisabled();
     });
+
+    test('fechaDeNacimiento mantiene help en aria-describedby aun sin error', () => {
+        setup();
+        const fechaDeNacimiento = screen.getByLabelText(/fecha de nacimiento/i);
+        expect(fechaDeNacimiento).toHaveAttribute('aria-describedby', expect.stringContaining('fechaDeNacimiento-help'));
+    })
+});
+
+describe("Interacción en /crear", () => {
+    test('blur en vacio muestra errores de nombre, fechaDeNacimiento, descripción e imagen', async () => {
+        const { user, heading, nombreInput, fechaInput, descripcionInput, imagenInput, saveBtn } = setup();
+        await user.click(nombreInput);
+        await user.tab();
+        expect(await screen.getByText(/el nombre es obligatorio/i)).toBeInTheDocument();
+        expect(nombreInput).toHaveAttribute('aria-invalid', 'true');
+        const descNombre = nombreInput.getAttribute('aria-describedby') || "";
+        expect(descNombre.split(' ')).toEqual(expect.arrayContaining(['nombre-error']));
+        await user.click(fechaInput);
+        await user.tab();
+        expect(await screen.getByText(/la fecha de nacimiento es obligatoria/i)).toBeInTheDocument();  
+        expect(fechaInput).toHaveAttribute('aria-invalid', 'true');
+        const descFecha = fechaInput.getAttribute('aria-describedby') || "";
+        expect(descFecha.split(' ')).toEqual(expect.arrayContaining(['fechaDeNacimiento-error']));
+        await user.click(descripcionInput);
+        await user.tab();
+        expect(await screen.getByText(/la descripción es obligatoria/i)).toBeInTheDocument();
+        expect(descripcionInput).toHaveAttribute('aria-invalid', 'true');
+        const descDescripcion = descripcionInput.getAttribute('aria-describedby') || "";
+        expect(descDescripcion.split(' ')).toEqual(expect.arrayContaining(['descripcion-error']));
+        await user.click(imagenInput);
+        await user.tab();
+        expect(await screen.getByText(/la url de la imagen es obligatoria/i)).toBeInTheDocument();
+        expect(imagenInput).toHaveAttribute('aria-invalid', 'true');
+        const descImagen = imagenInput.getAttribute('aria-describedby') || "";
+        expect(descImagen.split(' ')).toEqual(expect.arrayContaining(['imagen-error']));
+        expect(saveBtn).toBeDisabled();
+    });
+
+    test('con valores válidos se habilita el botón y no hay errores en pantalla', async () =>{
+        const { user, heading, nombreInput, fechaInput, descripcionInput, imagenInput, saveBtn } = setup();
+        await fillValid(user, nombreInput, fechaInput, descripcionInput, imagenInput);
+        expect(saveBtn).toBeEnabled();
+        expect(nombreInput.getAttribute('aria-invalid')).toBe('false');
+        expect(fechaInput.getAttribute('aria-invalid')).toBe('false');
+        expect(descripcionInput.getAttribute('aria-invalid')).toBe('false');
+        expect(imagenInput.getAttribute('aria-invalid')).toBe('false');
+        expect(screen.queryByText(/es obligatorio/i)).not.toBeInTheDocument();
+    });
 });

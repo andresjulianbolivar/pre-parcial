@@ -9,6 +9,7 @@ global.fetch = jest.fn(() =>
           name: "Autor Test",
           description: "Descripción del autor de prueba",
           image: "https://example.com/autor-test.jpg",
+          id: 1
         }
       ])
   })

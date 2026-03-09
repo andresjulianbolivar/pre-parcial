@@ -135,7 +135,7 @@ export default function Formulario({name="",birthDate="",description="",image=""
                     onChange={handleChange}
                     onBlur={handleBlur}
                     aria-invalid={!!(touched.nombre && errors.nombre)}
-                    aria-describedby={touched.nombre && errors.nombre ? "nombre-error" : undefined}
+                    aria-describedby={touched.nombre && errors.nombre ? "nombre-error" : "nombre-help"}
                     className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary focus:ring-primary"
                 />
                 {touched.nombre && errors.nombre && (
@@ -158,7 +158,7 @@ export default function Formulario({name="",birthDate="",description="",image=""
                     onChange={handleChange}
                     onBlur={handleBlur}
                     aria-invalid={!!(touched.fechaDeNacimiento && errors.fechaDeNacimiento)}
-                    aria-describedby={touched.fechaDeNacimiento && errors.fechaDeNacimiento ? "fechaDeNacimiento-error" : undefined}
+                    aria-describedby={touched.fechaDeNacimiento && errors.fechaDeNacimiento ? "fechaDeNacimiento-error" : "fechaDeNacimiento-help"}
                     className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary focus:ring-primary"
                 />
                 {touched.fechaDeNacimiento && errors.fechaDeNacimiento && (
@@ -181,7 +181,7 @@ export default function Formulario({name="",birthDate="",description="",image=""
                     onChange={handleChange}
                     onBlur={handleBlur}
                     aria-invalid={!!(touched.descripcion && errors.descripcion)}
-                    aria-describedby={touched.descripcion && errors.descripcion ? "descripcion-error" : undefined}
+                    aria-describedby={touched.descripcion && errors.descripcion ? "descripcion-error" : "descripcion-help"}
                     className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary focus:ring-primary"
                 />
                 {touched.descripcion && errors.descripcion && (
@@ -204,7 +204,7 @@ export default function Formulario({name="",birthDate="",description="",image=""
                     onChange={handleChange}
                     onBlur={handleBlur}
                     aria-invalid={!!(touched.imagen && errors.imagen)}
-                    aria-describedby={touched.imagen && errors.imagen ? "imagen-error" : undefined}
+                    aria-describedby={touched.imagen && errors.imagen ? "imagen-error" : "imagen-help"}
                     className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary focus:ring-primary"
                 />
                 {touched.imagen && errors.imagen && (
