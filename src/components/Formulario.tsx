@@ -112,6 +112,9 @@ export default function Formulario({name="",birthDate="",description="",image=""
             actualizarAutores(nuevosAutores);
             alert(`Autor ${form.nombre} agregado exitosamente`);
         }
+        setForm({nombre:"",fechaDeNacimiento:"",descripcion:"",imagen:""});
+        setTouched({});
+        setErrors({});
     }
 
     return (

@@ -55,6 +55,7 @@ export default function Lista(){
      <div className="mb-4">
         {autorEditando && (
             <Formulario
+                key={autorEditando.name}
                 {...autorEditando}
                 edicion={true}
             />
