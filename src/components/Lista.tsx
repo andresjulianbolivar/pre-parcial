@@ -1,8 +1,19 @@
 "use client";
 import { useAutores } from "./AutoresContext";
+import { useState } from "react";
+import Formulario from "./Formulario";
+
+interface Autor {
+    birthDate: string;
+    description: string;
+    image: string;
+    name: string;
+}
 
 export default function Lista(){
     const {autores, actualizarAutores} = useAutores();
+
+    const [autorEditando, setAutorEditando] = useState<Autor|null>();
 
     const listItems = autores.map(autor =>
         <tr className="bg-neutral-primary border-b border-default" key={autor.name}>
@@ -28,6 +39,7 @@ export default function Lista(){
     );
 
     function handleEditar(autor: { name: string; birthDate: string; description: string; image: string }) {
+        setAutorEditando(autor);
     }
 
     function handleEliminar(name: string) {
@@ -40,21 +52,29 @@ export default function Lista(){
     }
 
     return (
-        <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
-            <table className="w-full text-sm text-left rtl:text-right text-body">
-                <thead className="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default">
-                    <tr>
-                        <th scope="col" className="px-6 py-3 font-medium">Nombre</th>
-                        <th scope="col" className="px-6 py-3 font-medium">Fecha de nacimiento</th>
-                        <th scope="col" className="px-6 py-3 font-medium">Descripción</th>
-                        <th scope="col" className="px-6 py-3 font-medium">Imagen</th>
-                        <th scope="col" className="px-6 py-3 font-medium">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listItems}
-                </tbody>
-            </table>
-        </div>
+     <div className="mb-4">
+        {autorEditando && (
+            <Formulario
+                {...autorEditando}
+                edicion={true}
+            />
+        )}
+            <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+                <table className="w-full text-sm text-left rtl:text-right text-body">
+                    <thead className="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default">
+                        <tr>
+                            <th scope="col" className="px-6 py-3 font-medium">Nombre</th>
+                            <th scope="col" className="px-6 py-3 font-medium">Fecha de nacimiento</th>
+                            <th scope="col" className="px-6 py-3 font-medium">Descripción</th>
+                            <th scope="col" className="px-6 py-3 font-medium">Imagen</th>
+                            <th scope="col" className="px-6 py-3 font-medium">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listItems}
+                    </tbody>
+                </table>
+            </div>
+    </div>
     );
 }
